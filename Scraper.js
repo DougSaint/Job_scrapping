@@ -19,6 +19,7 @@ class Scraper {
     try {
       puppeteer.use(StealthPlugin());
       const browser = await puppeteer.launch({
+        headless: "new",
         args: [
           "--no-sandbox",
           "--disable-setuid-sandbox",
@@ -117,7 +118,7 @@ class Scraper {
       });
 
       await browser.close();
-      console.log('google scraper finished')
+      console.log(`google scraper finished with: ${jobs.length}` )
       this.currentlyScrapingGoogle = false;
       this.gooogleJobs = jobs;
     } catch (e) {
@@ -183,7 +184,7 @@ class Scraper {
       }
       this.currentlyScrapingLinkedin = false;
       this.linkedinJobs = jobs_data;
-      console.log('linkedin scraper finished')
+      console.log(`linkedin scraper finished with: ${jobs_data.length}` )
     } catch (e) {
       console.log(e);
     }
