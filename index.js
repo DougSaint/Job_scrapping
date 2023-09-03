@@ -41,5 +41,5 @@ app.get("/google-jobs", async (req, res) => {
 ScrapperService();
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Application is alive! Scraping will start soon`);
 });

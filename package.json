@@ -17,6 +17,7 @@
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.2",
     "chrome-launcher": "^0.13.4",
+    "chrome-remote-interface": "^0.26.1",
     "puppeteer": "^21.1.1",
     "puppeteer-core": "^20.7.1",
     "puppeteer-extra": "^3.3.6",
