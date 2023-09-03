@@ -17,7 +17,11 @@ class Scraper {
     try {
       puppeteer.use(StealthPlugin());
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: "new",
+        args: [
+          '--no-sandbox',
+          '--disable-dev-shm-usage'
+        ],
       });
       const page = await browser.newPage();
 
