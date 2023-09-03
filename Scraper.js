@@ -19,7 +19,6 @@ class Scraper {
     try {
       puppeteer.use(StealthPlugin());
       const browser = await puppeteer.launch({
-        headless: "new",
         args: [
           "--no-sandbox",
           "--disable-setuid-sandbox",
