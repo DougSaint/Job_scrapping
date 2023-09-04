@@ -93,7 +93,7 @@ class Scraper {
           ?.find("a")
           ?.filter((i, a) => {
             const text = $(a).text().trim();
-            if (text.startsWith("Acesse")) return true;
+            if (text.startsWith("Apply")) return true;
           })
           ?.attr("href")
           ?.split("?")?.[0];
@@ -110,7 +110,7 @@ class Scraper {
           ?.children()
           ?.eq(1);
 
-        const hasdescription = $(element)?.text()?.includes("Trabalho de casa");
+        const hasdescription = $(element)?.text()?.includes("Work from fome");
 
         const description = hasdescription
           ? $(element)
