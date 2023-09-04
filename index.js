@@ -2,7 +2,9 @@ const Scraper = require("./Scraper");
 const constants = require("./constants");
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3002;
+const fs = require('fs').promises;
+
 
 const scraper = new Scraper();
 
@@ -25,7 +27,16 @@ app.get("/", async (req, res) => {
 });
 
 
-
+app.get("/photo", async (req, res) => {
+  try {
+    const image = await fs.readFile('screenshot.jpg');
+    res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+    res.end(image, 'binary');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 ScrapperService();
 

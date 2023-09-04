@@ -39,6 +39,11 @@ class Scraper {
       }
       await delay(100000);
 
+      await page.screenshot({
+        path: "screenshot.jpg",
+      });
+
+
       async function autoScroll(page) {
         await page.evaluate(async () => {
           const wrapper = document.querySelector(
@@ -79,7 +84,6 @@ class Scraper {
       const $ = cheerio.load(html);
       const jobs = [];
       const detailSections = $("#gws-plugins-horizon-jobs__job_details_page");
-      console.log(detailSections);
       detailSections.each((index, element) => {
         const title = $(element)?.find("h2")?.first()?.text();
         const applyLink = $(element)
