@@ -10,7 +10,7 @@ class Scraper {
   currentlyScrapingGoogle = false;
 
   googleScraper = async () => {
-    const googleJobsUrl = `https://www.google.com/search?client=opera-gx&q=${constants.googleQuery}&sourceid=opera&ie=UTF-8&oe=UTF-8&ibp=htl;jobs&sa=X&ved=2ahUKEwifkerhyY2BAxVPH7kGHZeDDPYQudcGKAF6BAgXECs&sxsrf=AB5stBhvImrhn6Po9rw_bkdYNkihD6JEcg:1693714384330#fpstate=tldetail&htivrt=jobs&htichips=date_posted:3days&htischips=date_posted;3days&htidocid=iCTgQFNhw5sAAAAAAAAAAA%3D%3D`;
+    const googleJobsUrl = `https://www.google.com/search?client=opera-gx&q=(desenvolvedor+|+programador)+(front-end+|+front+end)+remoto+contratando+|+procurando&sourceid=opera&ie=UTF-8&oe=UTF-8&ibp=htl;jobs&sa=X&ved=2ahUKEwifkerhyY2BAxVPH7kGHZeDDPYQudcGKAF6BAgXECs&sxsrf=AB5stBhvImrhn6Po9rw_bkdYNkihD6JEcg:1693714384330#fpstate=tldetail&htivrt=jobs&htichips=date_posted:3days&htischips=date_posted;3days&htidocid=YiRGS_Ts2GIAAAAAAAAAAA%3D%3D`;
     if (this.currentlyScrapingGoogle) return;
     console.log(googleJobsUrl)
     this.currentlyScrapingGoogle = true;
