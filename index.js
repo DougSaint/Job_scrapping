@@ -2,7 +2,7 @@ const Scraper = require("./Scraper");
 const constants = require("./constants");
 const express = require("express");
 const app = express();
-const port = 3002;
+const port = 3000;
 const fs = require('fs').promises;
 
 
