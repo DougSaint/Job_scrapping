@@ -33,12 +33,12 @@ class Scraper {
       await page.goto(googleJobsUrl);
       //make wait 10 seconds
 
-      function delay(time) {
+      async function delay(time) {
         return new Promise(function (resolve) {
           setTimeout(resolve, time);
         });
       }
-      await delay(10000);
+      await delay(100000);
 
       async function autoScroll(page) {
         await page.evaluate(async () => {
