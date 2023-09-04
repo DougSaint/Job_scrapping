@@ -7,7 +7,7 @@ const port = 3000;
 const scraper = new Scraper();
 
 const ScrapperService = async () => {
-  await scraper.googleScraper();
+//  await scraper.googleScraper();
   await scraper.linkedinScraper();
 
   setInterval(async () => {
