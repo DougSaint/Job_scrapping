@@ -11,7 +11,7 @@ class Scraper {
   googleScraper = async () => {
     const googleJobsUrl = `https://www.google.com/search?client=opera-gx&q=(desenvolvedor+|+programador)+(front-end+|+front+end+|+web)+remoto+|+brasil&sourceid=opera&ie=UTF-8&oe=UTF-8&ibp=htl;jobs&sa=X&ved=2ahUKEwifkerhyY2BAxVPH7kGHZeDDPYQudcGKAF6BAgXECs&sxsrf=AB5stBhvImrhn6Po9rw_bkdYNkihD6JEcg:1693714384330#fpstate=tldetail&htivrt=jobs&htidocid=TA8iq_HukbgAAAAAAAAAAA%3D%3D`;
     if (this.currentlyScrapingGoogle) return;
-    console.log(googleJobsUrl)
+    console.log(googleJobsUrl);
     this.currentlyScrapingGoogle = true;
     try {
       puppeteer.use(StealthPlugin());
@@ -40,12 +40,12 @@ class Scraper {
           setTimeout(resolve, time);
         });
       }
-      await delay(50000);
+     // await delay(50000);
 
       await page.screenshot({
         path: "screenshot.jpg",
       });
-      console.log("screenshot taken")
+      console.log("screenshot taken");
 
       async function autoScroll(page) {
         await page.evaluate(async () => {
@@ -77,7 +77,7 @@ class Scraper {
                   resolve();
                 }
               }
-            }, 5000);
+            }, 200);
           });
         });
       }
@@ -110,18 +110,15 @@ class Scraper {
           ?.children()
           ?.eq(1);
 
-        const hasdescription = $(element)?.text()?.includes("Work from home");
+        const jobDescription = $(element)
+          ?.find("div")
+          ?.filter((i, div) => {
+            const text = $(div).text().trim();
+            if (text.startsWith("Report")) return true;
+          });
 
-        const description = hasdescription
-          ? $(element)
-              ?.text()
-              ?.split("Work from home")?.[1]
-              ?.split("Report this listing")[0]
-          : $(element)
-              ?.text()
-              ?.split("Work from home")?.[1]
-              ?.split("Report this listing")[0];
-
+          const description = jobDescription.parent().children().eq(4).text()
+          
         jobs.push({
           company: companyAndLocation?.children()?.first()?.text(),
           description,
@@ -138,7 +135,6 @@ class Scraper {
       console.log(e);
     }
   };
-
 }
 
 module.exports = Scraper;
