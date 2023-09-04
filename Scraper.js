@@ -12,6 +12,7 @@ class Scraper {
   googleScraper = async () => {
     const googleJobsUrl = `https://www.google.com/search?client=opera-gx&q=${constants.googleQuery}&sourceid=opera&ie=UTF-8&oe=UTF-8&ibp=htl;jobs&sa=X&ved=2ahUKEwifkerhyY2BAxVPH7kGHZeDDPYQudcGKAF6BAgXECs&sxsrf=AB5stBhvImrhn6Po9rw_bkdYNkihD6JEcg:1693714384330#fpstate=tldetail&htivrt=jobs&htichips=date_posted:3days&htischips=date_posted;3days&htidocid=iCTgQFNhw5sAAAAAAAAAAA%3D%3D`;
     if (this.currentlyScrapingGoogle) return;
+    console.log(googleJobsUrl)
     this.currentlyScrapingGoogle = true;
     try {
       puppeteer.use(StealthPlugin());
@@ -80,7 +81,6 @@ class Scraper {
       const $ = cheerio.load(html);
       const jobs = [];
       const detailSections = $("#gws-plugins-horizon-jobs__job_details_page");
-      console.log(detailSections)
       detailSections.each((index, element) => {
         const title = $(element)?.find("h2")?.first()?.text();
         const applyLink = $(element)
