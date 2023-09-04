@@ -30,6 +30,14 @@ class Scraper {
       const page = await browser.newPage();
 
       await page.goto(googleJobsUrl);
+      //make wait 10 seconds
+
+      function delay(time) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, time);
+        });
+      }
+      await delay(10000);
 
       async function autoScroll(page) {
         await page.evaluate(async () => {
@@ -61,7 +69,7 @@ class Scraper {
                   resolve();
                 }
               }
-            }, 2000);
+            }, 10000);
           });
         });
       }
