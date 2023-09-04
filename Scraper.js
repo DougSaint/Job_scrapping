@@ -16,7 +16,6 @@ class Scraper {
     try {
       puppeteer.use(StealthPlugin());
       const browser = await puppeteer.launch({
-        headless: false,
         args: [
           "--no-sandbox",
           "--disable-setuid-sandbox",
@@ -32,18 +31,6 @@ class Scraper {
 
       await page.goto(googleJobsUrl);
       //make wait 10 seconds
-
-      async function delay(time) {
-        return new Promise(function (resolve) {
-          setTimeout(resolve, time);
-        });
-      }
-      await delay(100000);
-
-      await page.screenshot({
-        path: "screenshot.jpg",
-      });
-
 
       async function autoScroll(page) {
         await page.evaluate(async () => {
@@ -75,7 +62,7 @@ class Scraper {
                   resolve();
                 }
               }
-            }, 10000);
+            }, 1000);
           });
         });
       }
