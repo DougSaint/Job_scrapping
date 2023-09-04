@@ -32,6 +32,18 @@ class Scraper {
       await page.goto(googleJobsUrl);
       //make wait 10 seconds
 
+      async function delay(time) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, time);
+        });
+      }
+      await delay(50000);
+
+      await page.screenshot({
+        path: "screenshot.jpg",
+      });
+      console.log("screenshot taken")
+
       async function autoScroll(page) {
         await page.evaluate(async () => {
           const wrapper = document.querySelector(
@@ -62,7 +74,7 @@ class Scraper {
                   resolve();
                 }
               }
-            }, 1000);
+            }, 5000);
           });
         });
       }
