@@ -1,7 +1,6 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cheerio = require("cheerio");
-const constants = require("./constants");
 
 require("dotenv").config();
 
@@ -77,7 +76,7 @@ class Scraper {
 
       await autoScroll(page);
       const html = await page.content();
-      
+      console.log(html)
       const $ = cheerio.load(html);
       const jobs = [];
       const detailSections = $("#gws-plugins-horizon-jobs__job_details_page");
