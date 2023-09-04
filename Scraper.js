@@ -61,18 +61,18 @@ class Scraper {
                   resolve();
                 }
               }
-            }, 500);
+            }, 2000);
           });
         });
       }
 
       await autoScroll(page);
       const html = await page.content();
+      
       const $ = cheerio.load(html);
       const jobs = [];
-
       const detailSections = $("#gws-plugins-horizon-jobs__job_details_page");
-
+      console.log(detailSections)
       detailSections.each((index, element) => {
         const title = $(element)?.find("h2")?.first()?.text();
         const applyLink = $(element)
