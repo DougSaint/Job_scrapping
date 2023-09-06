@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cheerio = require("cheerio");
-
+const fs = require("fs");
 require("dotenv").config();
 
 class Scraper {
@@ -40,7 +40,7 @@ class Scraper {
           setTimeout(resolve, time);
         });
       }
-     // await delay(50000);
+      // await delay(50000);
 
       await page.screenshot({
         path: "screenshot.jpg",
@@ -87,6 +87,7 @@ class Scraper {
       const $ = cheerio.load(html);
       const jobs = [];
       const detailSections = $("#gws-plugins-horizon-jobs__job_details_page");
+
       detailSections.each((index, element) => {
         const title = $(element)?.find("h2")?.first()?.text();
         const applyLink = $(element)
@@ -98,9 +99,16 @@ class Scraper {
           ?.attr("href")
           ?.split("?")?.[0];
 
-        const companyAndLocation = $(element)
+        const companyImage = $(element)
           ?.children()
-          ?.first()
+          ?.children()
+          ?.children()
+          ?.children()
+          ?.eq(1)
+          ?.find("img")
+          ?.attr("src");
+
+        const companyAndLocation = $(element)
           ?.children()
           ?.first()
           ?.children()
@@ -117,12 +125,13 @@ class Scraper {
             if (text.startsWith("Report")) return true;
           });
 
-          const description = jobDescription.parent().children().eq(4).text()
-          
+        const description = jobDescription.parent().children().eq(4).text();
+
         jobs.push({
           company: companyAndLocation?.children()?.first()?.text(),
           description,
           title,
+          companyImage,
           applyLink,
         });
       });

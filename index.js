@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const fs = require('fs').promises;
+const cors = require('cors');
 
+app.use(cors());
 
 const scraper = new Scraper();
 
@@ -41,5 +43,5 @@ app.get("/photo", async (req, res) => {
 ScrapperService();
 
 app.listen(port, () => {
-  console.log(`Application is alive! Scraping will start soon`);
+  console.log(`Application is alive! Scraping will start soon, can watch on https://localhost:${port}`);
 });
