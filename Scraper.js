@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const cheerio = require("cheerio");
-const fs = require("fs");
+
 require("dotenv").config();
 
 class Scraper {
@@ -32,15 +32,17 @@ class Scraper {
         width: 1920,
         height: 1080,
       });
+
       await page.goto(googleJobsUrl);
-      //make wait 10 seconds
+
 
       async function delay(time) {
         return new Promise(function (resolve) {
           setTimeout(resolve, time);
         });
       }
-      // await delay(50000);
+
+      await delay(50000);
 
       await page.screenshot({
         path: "screenshot.jpg",
